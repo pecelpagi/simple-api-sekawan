@@ -15,3 +15,18 @@ CREATE TABLE contacts
     CONSTRAINT unique_email UNIQUE (email),
     CONSTRAINT unique_phone UNIQUE (phone)
 );
+
+CREATE TABLE users
+(
+    id  serial not null,
+    username VARCHAR(100) not null,
+    password VARCHAR(100) not null,
+    name VARCHAR(100) not null,
+    token VARCHAR(100),
+    token_expired_at BIGINT,
+    primary key (id),
+    CONSTRAINT unique_username UNIQUE (username),
+    CONSTRAINT unique_token UNIQUE (token)
+);
+
+INSERT INTO users(username, password, name) VALUES('test', '$2a$10$uSZSPGSddrMQBAxNjrmoSuLkHvKhvf7SASFfkSMSYH4e9keWKJ/gS', 'Test Account');
