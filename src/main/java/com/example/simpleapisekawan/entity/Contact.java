@@ -11,7 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "contacts")
+@Table(
+        name = "contacts"
+)
 public class Contact {
 
     @Id
@@ -38,7 +40,9 @@ public class Contact {
     @Column(name = "last_education")
     private String lastEducation;
 
+    @Column(unique = true)
     private String phone;
 
+    @Column(unique = true)
     private String email;
 }

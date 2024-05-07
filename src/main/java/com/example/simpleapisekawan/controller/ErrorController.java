@@ -3,6 +3,8 @@ package com.example.simpleapisekawan.controller;
 
 import com.example.simpleapisekawan.model.WebResponse;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,4 +27,10 @@ public class ErrorController {
                 .body(WebResponse.<String>builder().errors(exception.getReason()).build());
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<WebResponse<String>> handleException(Exception ex,
+                                                               HttpServletRequest request, HttpServletResponse response) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(WebResponse.<String>builder().errors("Something went wrong").build());
+    }
 }

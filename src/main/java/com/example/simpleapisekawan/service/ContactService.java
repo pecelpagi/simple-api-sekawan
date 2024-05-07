@@ -14,9 +14,14 @@ import org.springframework.web.server.ResponseStatusException;
 public class ContactService {
 
     @Autowired
+    private ValidationService validationService;
+
+    @Autowired
     private ContactRepository contactRepository;
 
     public SavedResponse create(CreateContactRequest request) {
+        validationService.validate(request);
+
         Contact contact = new Contact();
         contact.setFirstName(request.getFirstName());
         contact.setMiddleName(request.getMiddleName());
@@ -36,6 +41,8 @@ public class ContactService {
     }
 
     public SavedResponse update(UpdateContactRequest request) {
+        validationService.validate(request);
+
         Contact contact = contactRepository.findById(request.getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ID is not found"));;
         contact.setFirstName(request.getFirstName());
