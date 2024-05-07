@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class ContactService {
 
@@ -18,6 +20,10 @@ public class ContactService {
 
     @Autowired
     private ContactRepository contactRepository;
+
+    public List<Contact> list() {
+        return contactRepository.findAll();
+    }
 
     public SavedResponse create(CreateContactRequest request) {
         validationService.validate(request);

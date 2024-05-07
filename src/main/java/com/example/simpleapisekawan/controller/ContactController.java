@@ -1,5 +1,6 @@
 package com.example.simpleapisekawan.controller;
 
+import com.example.simpleapisekawan.entity.Contact;
 import com.example.simpleapisekawan.entity.User;
 import com.example.simpleapisekawan.model.SavedResponse;
 import com.example.simpleapisekawan.model.WebResponse;
@@ -10,11 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ContactController {
 
     @Autowired
     private ContactService contactService;
+
+    @GetMapping(
+            path = "/api/contacts"
+    )
+    public WebResponse<List<Contact>> list(User user) {
+        List<Contact> contacts = contactService.list();
+
+        return WebResponse.<List<Contact>>builder().data(contacts).build();
+    }
 
     @PostMapping(
             path = "/api/contacts",
