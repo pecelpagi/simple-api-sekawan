@@ -54,4 +54,9 @@ public class ContactService {
 
         return SavedResponse.builder().id(lastSaved.getId()).label(fullName).build();
     }
+
+    public void delete(Integer id) {
+        Contact contact = contactRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data not found"));
+        contactRepository.delete(contact);
+    }
 }

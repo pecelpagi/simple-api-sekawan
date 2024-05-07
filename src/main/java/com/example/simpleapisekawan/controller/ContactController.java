@@ -7,10 +7,7 @@ import com.example.simpleapisekawan.model.contact.UpdateContactRequest;
 import com.example.simpleapisekawan.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ContactController {
@@ -38,6 +35,16 @@ public class ContactController {
         SavedResponse savedResponse = contactService.update(request);
 
         return WebResponse.<SavedResponse>builder().data(savedResponse).build();
+    }
+
+    @DeleteMapping(
+            path = "/api/contacts/{contactId}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<String> delete(@PathVariable("contactId") Integer contactId) {
+        contactService.delete(contactId);
+
+        return WebResponse.<String>builder().data("OK").build();
     }
 
 }
