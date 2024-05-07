@@ -2,6 +2,7 @@ package com.example.simpleapisekawan.controller;
 
 
 import com.example.simpleapisekawan.model.WebResponse;
+import jakarta.servlet.ServletException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
