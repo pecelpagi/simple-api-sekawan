@@ -30,6 +30,7 @@ public class ErrorController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<WebResponse<String>> handleException(Exception ex,
                                                                HttpServletRequest request, HttpServletResponse response) {
+        ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(WebResponse.<String>builder().errors("Something went wrong").build());
     }

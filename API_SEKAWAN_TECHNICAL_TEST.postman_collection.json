@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "26380cfa-4c7e-4559-a7e4-63c57b22517d",
+		"name": "API_SEKAWAN_TECHNICAL_TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7279515"
+	},
+	"item": [
+		{
+			"name": "List Contacts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/contacts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "Galuh",
+							"type": "text"
+						},
+						{
+							"key": "middleName",
+							"value": "Muhamad",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Ramadhan",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Jl. Ijen No. 23",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Malang",
+							"type": "text"
+						},
+						{
+							"key": "province",
+							"value": "Jawa Timur",
+							"type": "text"
+						},
+						{
+							"key": "occupation",
+							"value": "Swasta",
+							"type": "text"
+						},
+						{
+							"key": "lastEducation",
+							"value": "SMK",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "085731762555",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "galuhrmdh1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/galuhramadhan/Downloads/3e360e0884978a1c30cb6a96cc2d8a61.jpg"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/Users/galuhramadhan/Downloads/Record_2023_11_14_14_52_14_794.mp4"
+						},
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/Users/galuhramadhan/Downloads/KONTRAK-20200319-201028-4.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/contacts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 28,\n    \"firstName\": \"Galuh\",\n    \"middleName\": \"Muhamad\",\n    \"lastName\": \"Ramadhan\",\n    \"address\": \"Jl. Ijen No. 23\",\n    \"city\": \"Malang\",\n    \"province\": \"Jawa Timur\",\n    \"occupation\": \"Swasta\",\n    \"lastEducation\": \"SMK\",\n    \"phone\": \"085731762554\",\n    \"email\": \"galuhrmdh@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/contacts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/contacts/28",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"contacts",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/auth/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "38d984f8-2d78-456a-969b-11cc6447514d",
+			"type": "string"
+		}
+	]
+}

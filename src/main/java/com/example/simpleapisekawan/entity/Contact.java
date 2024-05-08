@@ -45,4 +45,10 @@ public class Contact {
 
     @Column(unique = true)
     private String email;
+
+    private String image;
+
+    private String video;
+
+    private String document;
 }

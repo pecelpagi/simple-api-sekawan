@@ -1,6 +1,7 @@
 package com.example.simpleapisekawan.service;
 
 import com.example.simpleapisekawan.entity.Contact;
+import com.example.simpleapisekawan.enums.FileUploadType;
 import com.example.simpleapisekawan.model.SavedResponse;
 import com.example.simpleapisekawan.model.contact.CreateContactRequest;
 import com.example.simpleapisekawan.model.contact.UpdateContactRequest;
@@ -21,12 +22,23 @@ public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
+    @Autowired
+    private FileSystemStorageService fileSystemStorageService;
+
     public List<Contact> list() {
         return contactRepository.findAll();
     }
 
     public SavedResponse create(CreateContactRequest request) {
         validationService.validate(request);
+
+        var image = request.getImage();
+        var video = request.getVideo();
+        var document = request.getDocument();
+
+        fileSystemStorageService.store(image, FileUploadType.IMAGE);
+        fileSystemStorageService.store(video, FileUploadType.VIDEO);
+        fileSystemStorageService.store(document, FileUploadType.DOCUMENT);
 
         Contact contact = new Contact();
         contact.setFirstName(request.getFirstName());
@@ -39,6 +51,9 @@ public class ContactService {
         contact.setLastEducation(request.getLastEducation());
         contact.setPhone(request.getPhone());
         contact.setEmail(request.getEmail());
+        contact.setImage(image.getOriginalFilename());
+        contact.setVideo(video.getOriginalFilename());
+        contact.setDocument(document.getOriginalFilename());
 
         Contact lastSaved = contactRepository.save(contact);
         String fullName = lastSaved.getFirstName() + " " + lastSaved.getMiddleName() + " " + lastSaved.getLastName();

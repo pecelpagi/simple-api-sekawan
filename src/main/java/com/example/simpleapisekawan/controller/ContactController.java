@@ -30,10 +30,10 @@ public class ContactController {
 
     @PostMapping(
             path = "/api/contacts",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<SavedResponse> create(User user, @RequestBody CreateContactRequest request) {
+    public WebResponse<SavedResponse> create(@ModelAttribute CreateContactRequest request) {
         SavedResponse savedResponse = contactService.create(request);
 
         return WebResponse.<SavedResponse>builder().data(savedResponse).build();

@@ -35,7 +35,10 @@ CREATE TABLE public.contacts (
     occupation character varying(100) NOT NULL,
     last_education character(4) NOT NULL,
     phone character(15) NOT NULL,
-    email character varying(50) NOT NULL
+    email character varying(50) NOT NULL,
+    image character varying(255),
+    video character varying(255),
+    document character varying(255)
 );
 
 
@@ -119,7 +122,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: galuhramadhan
 --
 
-COPY public.contacts (id, first_name, middle_name, last_name, address, city, province, occupation, last_education, phone, email) FROM stdin;
+COPY public.contacts (id, first_name, middle_name, last_name, address, city, province, occupation, last_education, phone, email, image, video, document) FROM stdin;
 \.
 
 
@@ -128,7 +131,7 @@ COPY public.contacts (id, first_name, middle_name, last_name, address, city, pro
 --
 
 COPY public.users (id, username, password, name, token, token_expired_at) FROM stdin;
-1	test	$2a$10$uSZSPGSddrMQBAxNjrmoSuLkHvKhvf7SASFfkSMSYH4e9keWKJ/gS	Test Account	\N	\N
+1	test	$2a$10$uSZSPGSddrMQBAxNjrmoSuLkHvKhvf7SASFfkSMSYH4e9keWKJ/gS	Test Account	38d984f8-2d78-456a-969b-11cc6447514d	1717719138772
 \.
 
 
@@ -136,7 +139,7 @@ COPY public.users (id, username, password, name, token, token_expired_at) FROM s
 -- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: galuhramadhan
 --
 
-SELECT pg_catalog.setval('public.contacts_id_seq', 20, true);
+SELECT pg_catalog.setval('public.contacts_id_seq', 28, true);
 
 
 --
